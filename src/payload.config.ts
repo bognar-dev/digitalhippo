@@ -1,6 +1,6 @@
 import { buildConfig } from 'payload/config'
 import { webpackBundler } from '@payloadcms/bundler-webpack'
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { postgresAdapter } from '@payloadcms/db-postgres'
 import { slateEditor } from '@payloadcms/richtext-slate'
 import path from 'path'
 import { Users } from './collections/Users'
@@ -16,12 +16,8 @@ dotenv.config({
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
-  collections: [Users, Products, Media, ProductFiles, Orders], 
-  routes: {
-    admin: '/sell',
-  },
+  collections: [ Media], 
   admin: {
-    user: 'users',
     bundler: webpackBundler(),
     meta: {
       titleSuffix: '- DigitalHippo',
@@ -33,8 +29,12 @@ export default buildConfig({
     max: 2000,
   },
   editor: slateEditor({}),
-  db: mongooseAdapter({
-    url: process.env.MONGODB_URL!,
+  db: postgresAdapter({
+    // Postgres-specific arguments go here.
+    // `pool` is required.
+    pool: {
+      connectionString: process.env.DATABASE_URL,
+    }
   }),
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),

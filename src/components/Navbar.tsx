@@ -1,94 +1,66 @@
-import Link from 'next/link'
-import MaxWidthWrapper from './MaxWidthWrapper'
-import { Icons } from './Icons'
-import NavItems from './NavItems'
-import { buttonVariants } from './ui/button'
-import Cart from './Cart'
-import { getServerSideUser } from '@/lib/payload-utils'
-import { cookies } from 'next/headers'
-import UserAccountNav from './UserAccountNav'
-import MobileNav from './MobileNav'
-
-const Navbar = async () => {
-  const nextCookies = cookies()
-  const { user } = await getServerSideUser(nextCookies)
-
+"use client"
+import Link from "next/link"
+import { JSX, SVGProps } from "react"
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu"
+import { useRouter, useSearchParams, usePathname,useParams } from "next/navigation"
+export default function Navbar() {
+  const params = useParams()
+  console.log(params)
   return (
-    <div className='bg-white sticky z-50 top-0 inset-x-0 h-16'>
-      <header className='relative bg-white'>
-        <MaxWidthWrapper>
-          <div className='border-b border-gray-200'>
-            <div className='flex h-16 items-center'>
-              <MobileNav />
+    <NavigationMenu className="bg-background px-1 py-2 shadow-md container flex items-center justify-items-stretch content-between justify-between min-w-full">
+        <div className=" pl-2 flex items-center space-x-4">
+          <NavigationMenuLink className="text-md font-semibold uppercase tracking-wide" href={`
+          
+          `}>
+            Projections
+          </NavigationMenuLink>
+          <NavigationMenuLink className="text-md font-semibold uppercase tracking-wide" href="#">
+            By Adela Novakova
+          </NavigationMenuLink>
+        </div>
 
-              <div className='ml-4 flex lg:ml-0'>
-                <Link href='/'>
-                  <Icons.logo className='h-10 w-10' />
-                </Link>
-              </div>
-
-              <div className='hidden z-50 lg:ml-8 lg:block lg:self-stretch'>
-                <NavItems />
-              </div>
-
-              <div className='ml-auto flex items-center'>
-                <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
-                  {user ? null : (
-                    <Link
-                      href='/sign-in'
-                      className={buttonVariants({
-                        variant: 'ghost',
-                      })}>
-                      Sign in
-                    </Link>
-                  )}
-
-                  {user ? null : (
-                    <span
-                      className='h-6 w-px bg-gray-200'
-                      aria-hidden='true'
-                    />
-                  )}
-
-                  {user ? (
-                    <UserAccountNav user={user} />
-                  ) : (
-                    <Link
-                      href='/sign-up'
-                      className={buttonVariants({
-                        variant: 'ghost',
-                      })}>
-                      Create account
-                    </Link>
-                  )}
-
-                  {user ? (
-                    <span
-                      className='h-6 w-px bg-gray-200'
-                      aria-hidden='true'
-                    />
-                  ) : null}
-
-                  {user ? null : (
-                    <div className='flex lg:ml-6'>
-                      <span
-                        className='h-6 w-px bg-gray-200'
-                        aria-hidden='true'
-                      />
-                    </div>
-                  )}
-
-                  <div className='ml-4 flow-root lg:ml-6'>
-                    <Cart />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </MaxWidthWrapper>
-      </header>
-    </div>
+        <div className="flex items-center space-x-4 pr-2 ">
+          <Link className="text-md font-semibold uppercase tracking-wide" href="#">
+            Portfolio
+          </Link>
+          <Link className="text-md font-semibold uppercase tracking-wide" href={
+            `?season=${params.season}`
+          }>
+            {params.season}
+          </Link>
+          <MenuIcon className="h-6 w-6" />
+        </div>
+      
+    </NavigationMenu>
   )
 }
 
-export default Navbar
+function MenuIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="4" x2="20" y1="12" y2="12" />
+      <line x1="4" x2="20" y1="6" y2="6" />
+      <line x1="4" x2="20" y1="18" y2="18" />
+    </svg>
+  )
+}

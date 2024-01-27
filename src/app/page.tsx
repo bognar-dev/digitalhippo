@@ -1,99 +1,46 @@
-import MaxWidthWrapper from '@/components/MaxWidthWrapper'
-import ProductReel from '@/components/ProductReel'
-import {
-  Button,
-  buttonVariants,
-} from '@/components/ui/button'
-import {
-  ArrowDownToLine,
-  CheckCircle,
-  Leaf,
-} from 'lucide-react'
-import Link from 'next/link'
-
-const perks = [
-  {
-    name: 'Instant Delivery',
-    Icon: ArrowDownToLine,
-    description:
-      'Get your assets delivered to your email in seconds and download them right away.',
-  },
-  {
-    name: 'Guaranteed Quality',
-    Icon: CheckCircle,
-    description:
-      'Every asset on our platform is verified by our team to ensure our highest quality standards. Not happy? We offer a 30-day refund guarantee.',
-  },
-  {
-    name: 'For the Planet',
-    Icon: Leaf,
-    description:
-      "We've pledged 1% of sales to the preservation and restoration of the natural environment.",
-  },
-]
-
+import projection1 from '@/../public/shoots/projections/projection1.png'
+import projection2 from '@/../public/shoots/projections/projection2.png'
+import projection3 from '@/../public/shoots/projections/projection3.png'
+import projection4 from '@/../public/shoots/projections/projection4.png'
+import projection5 from '@/../public/shoots/projections/projection5.png'
+import projection6 from '@/../public/shoots/projections/projection6.png'
+import projection7 from '@/../public/shoots/projections/projection7.png'
+import projection8 from '@/../public/shoots/projections/projection8.png'
+import Image from 'next/image'
+import Section from '../components/section'
 export default function Home() {
   return (
-    <>
-      <MaxWidthWrapper>
-        <div className='py-20 mx-auto text-center flex flex-col items-center max-w-3xl'>
-          <h1 className='text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl'>
-            Your marketplace for high-quality{' '}
-            <span className='text-blue-600'>
-              digital assets
-            </span>
-            .
-          </h1>
-          <p className='mt-6 text-lg max-w-prose text-muted-foreground'>
-            Welcome to DigitalHippo. Every asset on our
-            platform is verified by our team to ensure our
-            highest quality standards.
-          </p>
-          <div className='flex flex-col sm:flex-row gap-4 mt-6'>
-            <Link
-              href='/products'
-              className={buttonVariants()}>
-              Browse Trending
-            </Link>
-            <Button variant='ghost'>
-              Our quality promise &rarr;
-            </Button>
+    <main className="">
+      <section className=' min-w-full max-h-screen min-h-screen leading-none
+                          grid grid-cols-7 p-3'>
+        <section className="col-span-4 flex flex-col content-start place-items-end  justify-between items-baseline ">
+          <div>
+            <Image className=' rounded-sm aspect-auto h-96 w-auto object-contain' src={projection2} alt={''} />
+            <p className='text-md font-thin text-slate-700 uppercase'>photography</p>
+            <p className='text-xl font-bold uppercase'>Week  12 projection no.1</p>
           </div>
-        </div>
-
-        <ProductReel
-          query={{ sort: 'desc', limit: 4 }}
-          href='/products?sort=recent'
-          title='Brand new'
-        />
-      </MaxWidthWrapper>
-
-      <section className='border-t border-gray-200 bg-gray-50'>
-        <MaxWidthWrapper className='py-20'>
-          <div className='grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0'>
-            {perks.map((perk) => (
-              <div
-                key={perk.name}
-                className='text-center md:flex md:items-start md:text-left lg:block lg:text-center'>
-                <div className='md:flex-shrink-0 flex justify-center'>
-                  <div className='h-16 w-16 flex items-center justify-center rounded-full bg-blue-100 text-blue-900'>
-                    {<perk.Icon className='w-1/3 h-1/3' />}
-                  </div>
-                </div>
-
-                <div className='mt-6 md:ml-4 md:mt-0 lg:ml-0 lg:mt-6'>
-                  <h3 className='text-base font-medium text-gray-900'>
-                    {perk.name}
-                  </h3>
-                  <p className='mt-3 text-sm text-muted-foreground'>
-                    {perk.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+          <div className='flex items-end'>
+            <span className="text-[10rem] leading-2 align-baseline font-black">FALL 23{'\u{2018}'}</span>
           </div>
-        </MaxWidthWrapper>
+        </section>
+        <section className="col-span-3 flex flex-col relative">
+          <Image fill className='rounded-sm relative object-cover' src={projection1} alt={''} />
+        </section>
       </section>
-    </>
+      <Section className=' mt-5 my-4 min-w-full max-h-screen min-h-screen leading-none
+      flex justify-center justify-items-center '>
+        <h2 className='justify-items-start items-center uppercase font-extrabold flex text-8xl'>
+          lumine
+          <span className='px-4'><Image className='  rounded-sm aspect-auto h-[40rem] w-auto object-contain' src={projection4} alt={''} /></span>
+          scence</h2>
+
+      </Section>
+      <section className=' min-w-full max-h-screen min-h-screen leading-none
+      grid grid-cols-3 grid-rows-3'>
+        <Image className='p-5 rounded-sm aspect-auto col-span-1 row-span-1 w-auto object-contain' src={projection7} alt={''} />
+        <Image className='p-5 rounded-sm aspect-auto col-span-1 row-span-3 w-auto object-contain' src={projection2} alt={''} />
+        <Image className='p-5 rounded-sm aspect-auto col-span-1 row-span-1 w-auto object-contain' src={projection5} alt={''} />
+      </section>
+    </main>
   )
 }
