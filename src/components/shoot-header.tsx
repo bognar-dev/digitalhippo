@@ -16,7 +16,7 @@ export default function ShootHeader({ projection1, projection2, photographyText,
                           grid grid-cols-7 p-3'>
             <section className="col-span-4 flex flex-col content-start place-items-end  justify-between items-baseline ">
                 <div>
-                    <Image className=' rounded-sm aspect-auto h-96 w-auto object-contain' src={projection2.url!} alt={''} />
+                    <Image className=' rounded-sm aspect-auto h-96 w-auto object-contain' width={800} height={800} src={projection2.url!} alt={''} />
                     <p className='text-md font-thin text-slate-700 uppercase'>{photographyText}</p>
                     <p className='text-xl font-bold uppercase'>{weekText}</p>
                 </div>
