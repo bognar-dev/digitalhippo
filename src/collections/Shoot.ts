@@ -1,3 +1,4 @@
+import colorField from '../color-picker/config'
 import { CollectionConfig } from 'payload/types'
 
 export const Shoots: CollectionConfig = {
@@ -58,7 +59,7 @@ export const Shoots: CollectionConfig = {
       type: 'upload', // required
       relationTo: 'media',
       required: true,
-    }
+    },
 
   ],
 }
