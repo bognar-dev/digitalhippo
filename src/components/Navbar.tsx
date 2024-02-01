@@ -1,50 +1,144 @@
 "use client"
+import { motion } from "framer-motion"
+import Image from "next/image"
 import Link from "next/link"
+import React from "react"
 import { JSX, SVGProps } from "react"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu"
-import { useRouter, useSearchParams, usePathname,useParams } from "next/navigation"
-export default function Navbar() {
-  const params = useParams()
-  console.log(params)
-  return (
-    <NavigationMenu className="bg-background px-1 py-2 shadow-md container flex items-center justify-items-stretch content-between justify-between min-w-full">
-        <div className=" pl-2 flex items-center space-x-4">
-          <NavigationMenuLink className="text-md font-semibold uppercase tracking-wide" href={`
-          
-          `}>
-            Projections
-          </NavigationMenuLink>
-          <NavigationMenuLink className="text-md font-semibold uppercase tracking-wide" href="#">
-            By Adela Novakova
-          </NavigationMenuLink>
-        </div>
 
-        <div className="flex items-center space-x-4 pr-2 ">
-          <Link className="text-md font-semibold uppercase tracking-wide" href="#">
-            Portfolio
+export default function Component() {
+  const [isHovered, setIsHovered] = React.useState(false)
+  return (
+    <div className="flex flex-col ">
+      <header className="flex h-16 items-center justify-between px-4 md:px-6"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <Link className="flex items-center gap-2" href="#">
+          <CameraIcon className="h-6 w-6" />
+          <span className="text-lg font-semibold">Niklas Bognar</span>
+        </Link>
+        <nav className="flex gap-4">
+          <Link className="text-xl font-medium hover:underline underline-offset-4" href="#">
+            Home
           </Link>
-          <Link className="text-md font-semibold uppercase tracking-wide" href={
-            `?season=${params.season}`
-          }>
-            {params.season}
+          <Link className="text-xl font-medium hover:underline underline-offset-4" href="#">
+            About
           </Link>
-          <MenuIcon className="h-6 w-6" />
+          <Link className="text-xl font-medium hover:underline underline-offset-4" href="#">
+            Contact
+          </Link>
+        </nav>
+      </header>
+      <motion.main
+        className={`flex-1 overflow-auto p-4 md:p-6 ${isHovered ? "" : "hidden"}`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.0 }}
+      >
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="relative group">
+            <Image
+              alt="Shoot"
+              className="rounded-md object-cover transition-transform duration-200 group-hover:scale-105"
+              height="200"
+              src="/placeholder.svg"
+              style={{
+                aspectRatio: "300/200",
+                objectFit: "cover",
+              }}
+              width="300"
+            />
+            <div className="absolute inset-0 flex items-center justify-center p-4">
+              <h3 className="text-lg font-semibold text-white">Shoot Title</h3>
+            </div>
+          </div>
+          <div className="relative group">
+            <Image
+              alt="Shoot"
+              className="rounded-md object-cover transition-transform duration-200 group-hover:scale-105"
+              height="200"
+              src="/placeholder.svg"
+              style={{
+                aspectRatio: "300/200",
+                objectFit: "cover",
+              }}
+              width="300"
+            />
+            <div className="absolute inset-0 flex items-center justify-center p-4">
+              <h3 className="text-lg font-semibold text-white">Shoot Title</h3>
+            </div>
+          </div>
+          <div className="relative group">
+            <Image
+              alt="Shoot"
+              className="rounded-md object-cover transition-transform duration-200 group-hover:scale-105"
+              height="200"
+              src="/placeholder.svg"
+              style={{
+                aspectRatio: "300/200",
+                objectFit: "cover",
+              }}
+              width="300"
+            />
+            <div className="absolute inset-0 flex items-center justify-center p-4">
+              <h3 className="text-lg font-semibold text-white">Shoot Title</h3>
+            </div>
+          </div>
+          <div className="relative group">
+            <Image
+              alt="Shoot"
+              className="rounded-md object-cover transition-transform duration-200 group-hover:scale-105"
+              height="200"
+              src="/placeholder.svg"
+              style={{
+                aspectRatio: "300/200",
+                objectFit: "cover",
+              }}
+              width="300"
+            />
+            <div className="absolute inset-0 flex items-center justify-center p-4">
+              <h3 className="text-lg font-semibold text-white">Shoot Title</h3>
+            </div>
+          </div>
+          <div className="relative group">
+            <Image
+              alt="Shoot"
+              className="rounded-md object-cover transition-transform duration-200 group-hover:scale-105"
+              height="200"
+              src="/placeholder.svg"
+              style={{
+                aspectRatio: "300/200",
+                objectFit: "cover",
+              }}
+              width="300"
+            />
+            <div className="absolute inset-0 flex items-center justify-center p-4">
+              <h3 className="text-lg font-semibold text-white">Shoot Title</h3>
+            </div>
+          </div>
+          <div className="relative group">
+            <Image
+              alt="Shoot"
+              className="rounded-md object-cover transition-transform duration-200 group-hover:scale-105"
+              height="200"
+              src="/placeholder.svg"
+              style={{
+                aspectRatio: "300/200",
+                objectFit: "cover",
+              }}
+              width="300"
+            />
+            <div className="absolute inset-0 flex items-center justify-center p-4">
+              <h3 className="text-lg font-semibold text-white">Shoot Title</h3>
+            </div>
+          </div>
         </div>
-      
-    </NavigationMenu>
+      </motion.main>
+    </div>
   )
 }
 
-function MenuIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+function CameraIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -58,9 +152,8 @@ function MenuIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <line x1="4" x2="20" y1="12" y2="12" />
-      <line x1="4" x2="20" y1="6" y2="6" />
-      <line x1="4" x2="20" y1="18" y2="18" />
+      <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+      <circle cx="12" cy="13" r="3" />
     </svg>
   )
 }
