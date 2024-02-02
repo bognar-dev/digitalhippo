@@ -21,7 +21,7 @@ export default buildConfig({
     user: Users.slug,
     bundler: webpackBundler(),
     meta: {
-      titleSuffix: '- Modelsite',
+      titleSuffix: '- Niklas Bognar',
       favicon: '/favicon.ico',
       ogImage: '/thumbnail.jpg',
     },

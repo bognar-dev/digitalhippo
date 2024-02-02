@@ -6,29 +6,9 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function formatPrice(
-  price: number | string,
-  options: {
-    currency?: 'USD' | 'EUR' | 'GBP' | 'BDT'
-    notation?: Intl.NumberFormatOptions['notation']
-  } = {}
-) {
-  const { currency = 'USD', notation = 'compact' } = options
-
-  const numericPrice =
-    typeof price === 'string' ? parseFloat(price) : price
-
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency,
-    notation,
-    maximumFractionDigits: 2,
-  }).format(numericPrice)
-}
-
 export function constructMetadata({
-  title = 'DigitalHippo - the marketplace for digital assets',
-  description = 'DigitalHippo is an open-source marketplace for high-quality digital goods.',
+  title = 'Niklas Bognar',
+  description = 'Model Portfolio',
   image = '/thumbnail.png',
   icons = '/favicon.ico',
   noIndex = false,
@@ -56,10 +36,10 @@ export function constructMetadata({
       title,
       description,
       images: [image],
-      creator: '@joshtriedcoding',
+      creator: '@niklasbognar',
     },
     icons,
-    metadataBase: new URL('https://digitalhippo.up.railway.app'),
+    metadataBase: new URL('localhost:3000'),
     ...(noIndex && {
       robots: {
         index: false,
