@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Teko } from 'next/font/google'
 import './globals.css'
-import Navbar from '../components/navbar'
+import Navbar from '@/components/header/index'
 
 const mulish = Teko({
   subsets: ['latin'],

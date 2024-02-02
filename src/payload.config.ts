@@ -20,6 +20,14 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     bundler: webpackBundler(),
+    webpack: (config) => {
+      
+      // This is to get rid of typescript error
+      if (config.resolve?.fallback)
+        config.resolve.fallback = { ...config.resolve.fallback, fs: false };
+
+      return config;
+    },
     meta: {
       titleSuffix: '- Niklas Bognar',
       favicon: '/favicon.ico',
