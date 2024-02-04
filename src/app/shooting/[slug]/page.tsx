@@ -38,7 +38,7 @@ export default async function Home({ params }: { params: { slug: string } }) {
     console.log("shooot = " + shoot)
     if (!shoot) return notFound()
     return (
-        <main className="pt-14">
+        <main className="">
             <Shooting shoot={shoot} />
         </main>
     )

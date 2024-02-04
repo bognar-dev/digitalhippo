@@ -55,11 +55,10 @@ export default function Index({ shoots }: { shoots: Shoot[] }) {
 
 
   const [selectedLink, setSelectedLink] = useState({ isActive: false, index: 0 });
-  console.log(shoots[selectedLink.index].mainPicture.url!)
   return (
-    <motion.div variants={height} initial="initial" animate="enter" exit="exit" className={styles.nav}>
-      <div className={styles.wrapper}>
-        <div className={styles.container}>
+    <motion.div variants={height} initial="initial" animate="enter" exit="exit" className='overflow-hidden'>
+      <div className='flex mb-20 gap-12 lg:mb-0 lg:justify-between'>
+        <div className='flex flex-col justify-between'>
           <Body shoots={shoots} selectedLink={selectedLink} setSelectedLink={setSelectedLink} />
           <Footer photographer={shoots[selectedLink.index].Photographer.FirstName} stylist={shoots[selectedLink.index].Stylist.FirstName} artDirector={shoots[selectedLink.index].ArtDirector.FirstName} />
         </div>

@@ -1,12 +1,17 @@
 import type { Metadata } from 'next'
-import { Teko } from 'next/font/google'
+import { Libre_Caslon_Text, Teko } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/header/index'
 import { getPayloadClient } from '@/get-payload'
-
+import localFont from 'next/font/local'
 const mulish = Teko({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
+})
+
+const libreCaslon = Libre_Caslon_Text({
+  subsets: ['latin'],
+  weight: ['400', '700'],
 })
 
 export const metadata: Metadata = {
@@ -20,16 +25,16 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const payload = await getPayloadClient()
-    
-        const { docs: shoots } = await payload.find({
-            collection: 'shoots',
-        })
+
+  const { docs: shoots } = await payload.find({
+    collection: 'shoots',
+  })
   return (
     <html lang="en">
-      <body className={mulish.className}>
+      <body className={libreCaslon.className}>
         <Navbar shoots={shoots} />
         {children}
-        </body>
+      </body>
     </html>
   )
 }
