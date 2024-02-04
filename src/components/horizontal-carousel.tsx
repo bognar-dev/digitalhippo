@@ -22,7 +22,7 @@ const HorizontalScrollCarousel = () => {
     );
 };
 
-const Card = ({ card }) => {
+const Card = ({ card }:{card:{url:string,title:string,id:number}}) => {
     return (
         <div
             key={card.id}
