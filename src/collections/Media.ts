@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload/types'
 import path from 'path'
 
 export const Media: CollectionConfig = {
+
   access: {
     create: () => true,
     delete: () => true,
@@ -21,6 +22,7 @@ export const Media: CollectionConfig = {
   ],
   slug: 'media',
   upload: {
-    staticDir: path.resolve(__dirname, '../../../media'),
+    staticURL: '/media',
+    staticDir: 'media',
   },
 }
