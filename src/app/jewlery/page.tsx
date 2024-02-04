@@ -1,6 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
-import projection8 from '@/../public/shoots/projections/projection8.png'
+import Image from 'next/image'
 const MyComponent = () => {
   return (
     <>
@@ -17,16 +16,16 @@ const MyComponent = () => {
             </h1>
           </header>
           <section>
-            <Image
-              src={projection8}
+           {/*  <Image
+              src={}
               alt="Jhey walks across a stage at All Day Hey! 2022"
               className="w-full  object-cover filter grayscale contrast-75"
-            />
+            /> */}
           </section>
         </div>
         <section className="bg-white min-h-screen">
           <div className="content">
-            <p className="text-2xl">Use the web platform.<br />It's pretty cool.</p>
+            <p className="text-2xl">Use the web platform.<br />Its pretty cool.</p>
           </div>
         </section>
       </main>
