@@ -11,6 +11,7 @@ export interface Config {
     media: Media;
     shoots: Shoot;
     users: User;
+    people: Person;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -33,6 +34,13 @@ export interface Shoot {
   shootName: string;
   year: string;
   Tag: string;
+  Photographer: Person;
+  Stylist: Person;
+  ArtDirector: Person;
+  MakeUp?: (number | null) | Person;
+  Hair?: (number | null) | Person;
+  Model?: (number | null) | Person;
+  media:  Media;
   mainPicture:  Media;
   smallTop:  Media;
   middleSplit:  Media;
@@ -40,6 +48,16 @@ export interface Shoot {
   row1:  Media;
   row2:  Media;
   row3:  Media;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Person {
+  id: number;
+  FirstName: string;
+  LastName: string;
+  Role: string[];
+  Instagram?: string | null;
+  photo?: Media | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -64,14 +82,14 @@ export interface PayloadPreference {
   };
   key?: string | null;
   value?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
+  | {
+    [k: string]: unknown;
+  }
+  | unknown[]
+  | string
+  | number
+  | boolean
+  | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -85,5 +103,5 @@ export interface PayloadMigration {
 
 
 declare module 'payload' {
-  export interface GeneratedTypes extends Config {}
+  export interface GeneratedTypes extends Config { }
 }

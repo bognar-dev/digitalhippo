@@ -9,6 +9,7 @@ import { Media } from './collections/Media'
 
 import { Shoots } from './collections/Shoot'
 import Users from './collections/Users'
+import { People } from './collections/People'
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
@@ -16,9 +17,9 @@ dotenv.config({
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
-  collections: [Media, Shoots, Users],
+  collections: [Media, Shoots, Users,People],
   admin: {
-    user: Users.slug,
+    user: 'users',
     bundler: webpackBundler(),
     webpack: (config) => {
       
@@ -41,7 +42,7 @@ export default buildConfig({
   db: postgresAdapter({
     // Postgres-specific arguments go here.
     // `pool` is required.
-    push: false,
+    push: true,
     pool: {
       connectionString: process.env.DATABASE_URL,
     }

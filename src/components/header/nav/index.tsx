@@ -6,6 +6,7 @@ import { height } from '../anim';
 import Body from './Body';
 import Footer from './Footer';
 import Image from './Image';
+import { Shoot } from '@/payload-types';
 
 const links = [
   {
@@ -50,18 +51,19 @@ const links = [
   }
 ]
 
-export default function Index() {
+export default function Index({ shoots }: { shoots: Shoot[] }) {
+
 
   const [selectedLink, setSelectedLink] = useState({ isActive: false, index: 0 });
-
+  console.log(shoots[selectedLink.index].mainPicture.url!)
   return (
     <motion.div variants={height} initial="initial" animate="enter" exit="exit" className={styles.nav}>
       <div className={styles.wrapper}>
         <div className={styles.container}>
-          <Body links={links} selectedLink={selectedLink} setSelectedLink={setSelectedLink} />
-          <Footer photographer={links[selectedLink.index].photographer} stylist={links[selectedLink.index].stylist} artDirector={links[selectedLink.index].artDirector} />
+          <Body shoots={shoots} selectedLink={selectedLink} setSelectedLink={setSelectedLink} />
+          <Footer photographer={shoots[selectedLink.index].Photographer.FirstName} stylist={shoots[selectedLink.index].Stylist.FirstName} artDirector={shoots[selectedLink.index].ArtDirector.FirstName} />
         </div>
-        <Image src={links[selectedLink.index].src} isActive={selectedLink.isActive} />
+        <Image src={shoots[selectedLink.index].mainPicture.url!} isActive={selectedLink.isActive} />
       </div>
     </motion.div>
   )

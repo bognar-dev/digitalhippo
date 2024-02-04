@@ -9,6 +9,7 @@ export const Shoots: CollectionConfig = {
         type: 'text', // required
         required: true,
     },
+    
     {
         name: 'year', // required
         type: 'text', // required
@@ -18,6 +19,48 @@ export const Shoots: CollectionConfig = {
         name:'Tag',
         type:'text',
         required: true,
+    },
+    {
+      name: 'Photographer',
+      type: 'relationship',
+      relationTo: 'people',
+      required: true,
+    },
+    {
+      name: 'Stylist',
+      type: 'relationship',
+      relationTo: 'people',
+      required: true,
+    },
+    {
+      name: 'ArtDirector',
+      type: 'relationship',
+      relationTo: 'people',
+      required: true,
+    },
+    {
+      name: 'MakeUp',
+      type: 'relationship',
+      relationTo: 'people',
+      required: false,
+    },
+    {
+      name: 'Hair',
+      type: 'relationship',
+      relationTo: 'people',
+      required: false,
+    },
+    {
+      name: 'Model',
+      type: 'relationship',
+      relationTo: 'people',
+      required: false,
+    },
+    {
+      name: 'media', // required
+      type: 'upload', // required
+      relationTo: 'media',
+      required: true,
     },
     {
         name: 'mainPicture', // required

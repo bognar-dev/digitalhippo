@@ -4,8 +4,9 @@ import styles from './style.module.scss';
 import { blur, translate } from '../../anim';
 import { JSX } from 'react';
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from 'react';
+import { Shoot } from '@/payload-types';
 
-export default function Body({ links, selectedLink, setSelectedLink }: { links: { title: string, href: string }[], selectedLink: { isActive: boolean, index: number }, setSelectedLink: any }) {
+export default function Body({ shoots, selectedLink, setSelectedLink }: { shoots:Shoot[], selectedLink: { isActive: boolean, index: number }, setSelectedLink: any }) {
 
     const getChars = (word: string) => {
         let chars: JSX.Element[] = [];
@@ -28,16 +29,16 @@ export default function Body({ links, selectedLink, setSelectedLink }: { links: 
     return (
         <div className="flex flex-wrap mt-10">
             {
-                links.map((link, index) => {
-                    const { title, href } = link;
-                    return <Link key={`l_${index}`} href={href}>
+                shoots.map((shoot: Shoot, index) => {
+                    const {shootName  } = shoot;
+                    return <Link key={`l_${index}`} href={`shooting/${shoot.shootName}`}>
                         <motion.p
                             className='m-0 flex overflow-hidden text-8xl pr-8 pt-2 font-light'
                             onMouseOver={() => { setSelectedLink({ isActive: true, index }) }}
                             onMouseLeave={() => { setSelectedLink({ isActive: false, index }) }}
                             variants={blur}
                             animate={selectedLink.isActive && selectedLink.index != index ? "open" : "closed"}>
-                            {getChars(title)}
+                            {getChars(shootName)}
                         </motion.p>
                     </Link>
                 })

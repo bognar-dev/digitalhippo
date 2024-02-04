@@ -24,7 +24,7 @@ export default function ShootHeader({ projection1, projection2, photographyText,
                     <span className="text-[10rem] leading-2 align-baseline font-black">{yearText}{'\u{2018}'}</span>
                 </div>
             </section>
-            <section className="col-span-3 flex flex-col relative">
+            <section className="col-span-3 flex flex-col relative -z-10">
                 <Image fill className='rounded-sm relative object-cover' src={projection1.url!} alt={''} />
             </section>
         </section>

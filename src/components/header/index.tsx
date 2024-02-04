@@ -5,8 +5,9 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { opacity, background } from './anim';
 import Nav from './nav';
+import { Shoot } from '@/payload-types';
 
-export default function Navbar() {
+export default function Navbar({ shoots }: { shoots: Shoot[] }) {
 
     const [isActive, setIsActive] = useState(false);
 
@@ -24,7 +25,7 @@ export default function Navbar() {
             </div>
             <motion.div variants={background} initial="initial" animate={isActive ? "open" : "closed"} className={styles.background}></motion.div>
             <AnimatePresence mode="wait">
-                {isActive && <Nav />}
+                {isActive && <Nav shoots={shoots}/>}
             </AnimatePresence>
         </div>
     )

@@ -6,11 +6,11 @@ import { notFound } from 'next/navigation'
 
 export async function generateStaticParams() {
     const payload = await getPayloadClient()
-    const {docs: shoots} = await payload.find({
-            collection: 'shoots'
+    const { docs: shoots } = await payload.find({
+        collection: 'shoots'
     })
     console.log(JSON.stringify(shoots))
-    return shoots.map((shoot : Shoot) => {
+    return shoots.map((shoot: Shoot) => {
         return {
             slug: shoot.shootName,
         };
@@ -19,27 +19,27 @@ export async function generateStaticParams() {
 
 export default async function Home({ params }: { params: { slug: string } }) {
 
-        const { slug } = params
+    const { slug } = params
 
-        console.log('slug = ' + slug + ' '+params.slug)
+    console.log('slug = ' + slug + ' ' + params.slug)
 
-        const payload = await getPayloadClient()
-    
-        const { docs: shoots } = await payload.find({
-            collection: 'shoots',
-            where:{
-                shootName:{
-                    equals:slug
-                }
+    const payload = await getPayloadClient()
+
+    const { docs: shoots } = await payload.find({
+        collection: 'shoots',
+        where: {
+            shootName: {
+                equals: slug
             }
-        })
-        
-        const [shoot] = shoots
-        console.log("shooot = "+ shoot)
-        if (!shoot) return notFound()
-        return (
-            <main className="">
-                <Shooting shoot={shoot} />
-            </main>
-        )
-    }
+        }
+    })
+
+    const [shoot] = shoots
+    console.log("shooot = " + shoot)
+    if (!shoot) return notFound()
+    return (
+        <main className="pt-14">
+            <Shooting shoot={shoot} />
+        </main>
+    )
+}
