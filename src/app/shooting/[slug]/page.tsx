@@ -32,10 +32,10 @@ export default async function Home({ params }: { params: { slug: string } }) {
     })
 
     const [shoot] = shoots
-    
+
     if (!shoot) return notFound()
     return (
-        <main className="">
+        <main className="bg-stone-100">
             <Shooting shoot={shoot} />
         </main>
     )
