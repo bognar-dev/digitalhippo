@@ -9,7 +9,6 @@ export async function generateStaticParams() {
     const { docs: shoots } = await payload.find({
         collection: 'shoots'
     })
-    console.log(JSON.stringify(shoots))
     return shoots.map((shoot: Shoot) => {
         return {
             slug: shoot.shootName,
@@ -20,8 +19,6 @@ export async function generateStaticParams() {
 export default async function Home({ params }: { params: { slug: string } }) {
 
     const { slug } = params
-
-    console.log('slug = ' + slug + ' ' + params.slug)
 
     const payload = await getPayloadClient()
 
@@ -35,7 +32,7 @@ export default async function Home({ params }: { params: { slug: string } }) {
     })
 
     const [shoot] = shoots
-    console.log("shooot = " + shoot)
+    
     if (!shoot) return notFound()
     return (
         <main className="">

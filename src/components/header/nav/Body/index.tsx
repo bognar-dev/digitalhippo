@@ -6,7 +6,7 @@ import { JSX } from 'react';
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from 'react';
 import { Shoot } from '@/payload-types';
 
-export default function Body({ shoots, selectedLink, setSelectedLink }: { shoots:Shoot[], selectedLink: { isActive: boolean, index: number }, setSelectedLink: any }) {
+export default function Body({ shoots, selectedLink, setSelectedLink }: { shoots: Shoot[], selectedLink: { isActive: boolean, index: number }, setSelectedLink: any }) {
 
     const getChars = (word: string) => {
         let chars: JSX.Element[] = [];
@@ -30,10 +30,10 @@ export default function Body({ shoots, selectedLink, setSelectedLink }: { shoots
         <div className="flex flex-wrap mt-10">
             {
                 shoots.map((shoot: Shoot, index) => {
-                    const {shootName  } = shoot;
+                    const { shootName } = shoot;
                     return <Link key={`l_${index}`} href={`shooting/${shoot.shootName}`}>
                         <motion.p
-                            className='m-0 flex overflow-hidden text-8xl pr-8 pt-2 font-light'
+                            className='m-0 flex text-8xl px-4 pt-2 font-light'
                             onMouseOver={() => { setSelectedLink({ isActive: true, index }) }}
                             onMouseLeave={() => { setSelectedLink({ isActive: false, index }) }}
                             variants={blur}
