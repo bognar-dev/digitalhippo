@@ -56,7 +56,7 @@ export default function Index({ shoots,isActive,setIsActive }: { shoots: Shoot[]
 
   const [selectedLink, setSelectedLink] = useState({ isActive: false, index: 0 });
   return (
-    <motion.div variants={height} initial="initial" animate="enter" exit="exit" className='overflow-hidden'>
+    <motion.div  variants={height} initial="initial" animate="enter" exit="exit" className='overflow-hidden'>
       <div className='flex mb-20 gap-12 lg:mb-0 lg:justify-between'>
         <div className='flex flex-col justify-between'>
           <Body shoots={shoots} selectedLink={selectedLink} setSelectedLink={setSelectedLink} isActive={isActive} setIsActive={setIsActive}/>
