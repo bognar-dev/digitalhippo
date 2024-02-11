@@ -4,6 +4,7 @@ import './globals.css'
 import Navbar from '@/components/header/index'
 import { getPayloadClient } from '@/get-payload'
 import localFont from 'next/font/local'
+import React from 'react'
 const mulish = Teko({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
@@ -24,8 +25,9 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const payload = await getPayloadClient()
 
+  const payload = await getPayloadClient()
+  
   const { docs: shoots } = await payload.find({
     collection: 'shoots',
   })

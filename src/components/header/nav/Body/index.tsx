@@ -6,7 +6,7 @@ import { JSX } from 'react';
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from 'react';
 import { Shoot } from '@/payload-types';
 
-export default function Body({ shoots, selectedLink, setSelectedLink }: { shoots: Shoot[], selectedLink: { isActive: boolean, index: number }, setSelectedLink: any }) {
+export default function Body({ shoots, selectedLink, setSelectedLink, isActive, setIsActive }: { shoots: Shoot[], selectedLink: { isActive: boolean, index: number }, setSelectedLink: any, isActive: boolean, setIsActive: React.Dispatch<React.SetStateAction<boolean>> }) {
 
     const getChars = (word: string) => {
         let chars: JSX.Element[] = [];
@@ -31,7 +31,7 @@ export default function Body({ shoots, selectedLink, setSelectedLink }: { shoots
             {
                 shoots.map((shoot: Shoot, index) => {
                     const { shootName } = shoot;
-                    return <Link key={`l_${index}`} href={`shooting/${shoot.shootName}`}>
+                    return <Link key={`l_${index}`} href={`/shooting/${shoot.shootName}`} onClick={() => setIsActive(false)}>
                         <motion.p
                             className='m-0 flex text-8xl px-4 pt-2 font-light'
                             onMouseOver={() => { setSelectedLink({ isActive: true, index }) }}

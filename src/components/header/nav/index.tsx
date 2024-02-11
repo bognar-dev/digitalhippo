@@ -51,7 +51,7 @@ const links = [
   }
 ]
 
-export default function Index({ shoots }: { shoots: Shoot[] }) {
+export default function Index({ shoots,isActive,setIsActive }: { shoots: Shoot[], isActive: boolean,setIsActive:React.Dispatch<React.SetStateAction<boolean>>}) {
 
 
   const [selectedLink, setSelectedLink] = useState({ isActive: false, index: 0 });
@@ -59,7 +59,7 @@ export default function Index({ shoots }: { shoots: Shoot[] }) {
     <motion.div variants={height} initial="initial" animate="enter" exit="exit" className='overflow-hidden'>
       <div className='flex mb-20 gap-12 lg:mb-0 lg:justify-between'>
         <div className='flex flex-col justify-between'>
-          <Body shoots={shoots} selectedLink={selectedLink} setSelectedLink={setSelectedLink} />
+          <Body shoots={shoots} selectedLink={selectedLink} setSelectedLink={setSelectedLink} isActive={isActive} setIsActive={setIsActive}/>
           <Footer photographer={shoots[selectedLink.index].Photographer.FirstName} stylist={shoots[selectedLink.index].Stylist.FirstName} artDirector={shoots[selectedLink.index].ArtDirector.FirstName} />
         </div>
         <Image src={shoots[selectedLink.index].mainPicture.url!} isActive={selectedLink.isActive} />

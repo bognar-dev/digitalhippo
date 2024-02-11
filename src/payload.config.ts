@@ -16,7 +16,7 @@ dotenv.config({
 })
 
 export default buildConfig({
-  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL ,
   collections: [Media, Shoots, Users,People],
   admin: {
     user: 'users',
