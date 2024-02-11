@@ -14,7 +14,7 @@ export default function Navbar({ shoots }: { shoots: Shoot[] }) {
     const [isActive, setIsActive] = useState(false);
     useOnClickOutside(navRef, () => setIsActive(false));
     return (
-        <div className='bg-stone-100 sticky w-full box-border p-2' ref={navRef}>
+        <div className='bg-background sticky w-full box-border p-2' ref={navRef}>
             <div className='flex justify-center items-center justify-items-center uppercase text-2xl font-normal relative'>
                 <Link className='no-underline text-black absolute left-0' href="/">Niklas</Link>
                 <div onClick={() => { setIsActive(!isActive) }} className='flex items-center justify-center cursor-pointer gap-2 '>

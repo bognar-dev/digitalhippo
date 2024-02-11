@@ -35,7 +35,7 @@ export default async function Home({ params }: { params: { slug: string } }) {
 
     if (!shoot) return notFound()
     return (
-        <main className="bg-stone-100">
+        <main className="bg-background">
             <Shooting shoot={shoot} />
         </main>
     )

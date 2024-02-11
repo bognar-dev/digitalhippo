@@ -4,8 +4,8 @@
 
 export default function Home() {
   return (
-    <main className="">
-     <div>Hey1</div>
+    <main className="bg-background">
+      <div>Hey1</div>
     </main>
   )
 }
