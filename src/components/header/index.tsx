@@ -1,20 +1,18 @@
 'use client';
-import styles from './style.module.scss';
-import Link from 'next/link';
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { opacity, background } from './anim';
-import Nav from './nav';
-import { Shoot } from '@/payload-types';
 import { useOnClickOutside } from '@/hooks/use-on-click-outside';
-import React from 'react';
+import { Shoot } from '@/payload-types';
+import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import { background, opacity } from './anim';
+import Nav from './nav';
 
 export default function Navbar({ shoots }: { shoots: Shoot[] }) {
     const navRef = React.useRef(null);
     const [isActive, setIsActive] = useState(false);
     useOnClickOutside(navRef, () => setIsActive(false));
     return (
-        <div className='bg-background sticky w-full box-border p-2' ref={navRef}>
+        <div className='bg-[#E9E3D3] sticky w-full box-border p-2' ref={navRef}>
             <div className='flex justify-center items-center justify-items-center uppercase text-2xl font-normal relative'>
                 <Link className='no-underline text-black absolute left-0' href="/">Niklas</Link>
                 <div onClick={() => { setIsActive(!isActive) }} className='flex items-center justify-center cursor-pointer gap-2 '>
@@ -51,8 +49,8 @@ export default function Navbar({ shoots }: { shoots: Shoot[] }) {
                 </div>
             </div>
             <motion.div variants={background} initial="initial" animate={isActive ? "open" : "closed"} className='bg-black h-full w-full absolute left-0 opacity-50 top-[100%]'></motion.div>
-            <AnimatePresence  mode="wait">
-                {isActive && <Nav shoots={shoots} isActive={isActive} setIsActive={setIsActive}/>}
+            <AnimatePresence mode="wait">
+                {isActive && <Nav shoots={shoots} isActive={isActive} setIsActive={setIsActive} />}
             </AnimatePresence>
         </div>
     )
