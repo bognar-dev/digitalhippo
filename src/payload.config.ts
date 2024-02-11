@@ -2,6 +2,8 @@ import { buildConfig } from 'payload/config'
 import { webpackBundler } from '@payloadcms/bundler-webpack'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { slateEditor } from '@payloadcms/richtext-slate'
+import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3';
+import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import path from 'path'
 import dotenv from 'dotenv'
 
@@ -15,14 +17,21 @@ dotenv.config({
   path: path.resolve(__dirname, '../.env'),
 })
 
+const adapter = s3Adapter({
+  config: {
+    endpoint: process.env.NEXT_PUBLIC_S3_ENDPOINT,
+  },
+  bucket: process.env.NEXT_PUBLIC_S3_BUCKET as string,
+})
+
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'model-site-wheat.vercel.app',
-  collections: [Media, Shoots, Users,People],
+  collections: [Media, Shoots, Users, People],
   admin: {
     user: 'users',
     bundler: webpackBundler(),
     webpack: (config) => {
-      
+
       // This is to get rid of typescript error
       if (config.resolve?.fallback)
         config.resolve.fallback = { ...config.resolve.fallback, fs: false };
@@ -50,4 +59,15 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
+
+  plugins: [
+    cloudStorage({
+      collections: {
+        'media': {
+          adapter,
+          disablePayloadAccessControl: true,
+        }
+      },
+    }),
+  ],
 })
